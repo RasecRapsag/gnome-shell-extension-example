@@ -1,0 +1,8 @@
+{
+  "name": "Gnome Shell Extension Example",
+  "description": "Exemplo de extensão para Gnome",
+  "uuid": "gnome-shell-extension@rasec.rapsag",
+  "shell-version": [
+    "43"
+  ]
+}
