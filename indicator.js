@@ -36,9 +36,6 @@ class Indicator extends PanelMenu.Button {
         // Adicionando o item ao menu
         this.menu.addMenuItem(item1);
 
-        // Adicionar o separadore de item
-        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-
         // Alterar estilo do ícone
         let item2 = new PopupMenu.PopupMenuItem(_('Alterar estilo do ícone'));
         item2.connect('activate', () => {
@@ -50,5 +47,13 @@ class Indicator extends PanelMenu.Button {
             }
         });
         this.menu.addMenuItem(item2);
+
+        // Adicionar o separadore de item
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
+        // Adicionar item desabilitado
+        let item3 = new PopupMenu.PopupMenuItem('Item Desabilitado');
+        item3.sensitive = false;
+        this.menu.addMenuItem(item3);
     }
 });
