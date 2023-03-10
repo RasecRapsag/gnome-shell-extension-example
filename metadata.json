@@ -4,5 +4,6 @@
   "uuid": "gnome-shell-extension@rasec.rapsag",
   "shell-version": [
     "43"
-  ]
+  ],
+  "gettext-domain": "gnome-shell-extension@rasec.rapsag"
 }
