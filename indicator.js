@@ -32,7 +32,6 @@ class Indicator extends PanelMenu.Button {
         item1.connect('activate', () => {
             Main.notify(_('Olá Mundo! Tudo bem?'));
         });
-
         // Adicionando o item ao menu
         this.menu.addMenuItem(item1);
 
@@ -51,9 +50,23 @@ class Indicator extends PanelMenu.Button {
         // Adicionar o separadore de item
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
-        // Adicionar item desabilitado
-        let item3 = new PopupMenu.PopupMenuItem('Item Desabilitado');
-        item3.sensitive = false;
+        // Adicionar item desabilitado (item3.sensitive = false)
+        let item3 = new PopupMenu.PopupMenuItem('Item Desabilitado', {reactive: false});
         this.menu.addMenuItem(item3);
+
+        // Alterando o texto do item
+        let item4 = new PopupMenu.PopupMenuItem('Alterar o texto');
+
+        // Recebe o focus
+        item4.connect('enter-event', () => {
+            item4.label.text = 'Texto alterado';
+        });
+
+        // Perde o focus
+        item4.connect('leave-event', () => {
+            item4.label.text = 'Alterar o texto';
+        });
+
+        this.menu.addMenuItem(item4);
     }
 });
