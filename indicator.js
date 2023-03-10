@@ -26,14 +26,29 @@ class Indicator extends PanelMenu.Button {
         this.add_child(this._icon);
 
         // Criando um item de menu
-        let item = new PopupMenu.PopupMenuItem(_('Exibir Notificação'));
+        let item1 = new PopupMenu.PopupMenuItem(_('Exibir Notificação'));
 
         // Associando um evento
-        item.connect('activate', () => {
+        item1.connect('activate', () => {
             Main.notify(_('Olá Mundo! Tudo bem?'));
         });
 
         // Adicionando o item ao menu
-        this.menu.addMenuItem(item);
+        this.menu.addMenuItem(item1);
+
+        // Adicionar o separadore de item
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
+        // Alterar estilo do ícone
+        let item2 = new PopupMenu.PopupMenuItem(_('Alterar estilo do ícone'));
+        item2.connect('activate', () => {
+            let style = 'icon-style';
+            if (!this._icon.has_style_class_name(style)) {
+                this._icon.add_style_class_name(style);
+            } else {
+                this._icon.remove_style_class_name(style);
+            }
+        });
+        this.menu.addMenuItem(item2);
     }
 });
