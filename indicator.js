@@ -6,6 +6,7 @@
 const { GObject, St } = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
+const Util = imports.misc.util;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 // função responsável pela tradução das strings
@@ -51,22 +52,44 @@ class Indicator extends PanelMenu.Button {
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
         // Adicionar item desabilitado (item3.sensitive = false)
-        let item3 = new PopupMenu.PopupMenuItem('Item Desabilitado', {reactive: false});
+        let item3 = new PopupMenu.PopupMenuItem(_('Item Desabilitado'), {reactive: false});
         this.menu.addMenuItem(item3);
 
         // Alterando o texto do item
-        let item4 = new PopupMenu.PopupMenuItem('Alterar o texto');
+        let item4 = new PopupMenu.PopupMenuItem(_('Alterar o texto'));
 
         // Recebe o focus
         item4.connect('enter-event', () => {
-            item4.label.text = 'Texto alterado';
+            item4.label.text = _('Texto alterado');
         });
 
         // Perde o focus
         item4.connect('leave-event', () => {
-            item4.label.text = 'Alterar o texto';
+            item4.label.text = _('Alterar o texto');
         });
 
         this.menu.addMenuItem(item4);
+
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
+        // Adicionando menu (submenu)
+        this.menu.addMenuItem(this._subMenu());
+    }
+
+    _subMenu() {
+        // Submenus (Texto, permite icone)
+        let item = new PopupMenu.PopupSubMenuMenuItem(_('Documentação'), false, {});
+        // Adicionando submenus
+        item.menu.addAction(_('Github da Extensão'), () => {
+            Util.trySpawnCommandLine('xdg-open https://github.com/RasecRapsag/gnome-shell-extension-example');
+        });
+        item.menu.addAction(_('Documentação Gnome JS'), () => {
+            Util.trySpawnCommandLine('xdg-open https://gjs-docs.gnome.org');
+        });
+        item.menu.addAction(_('Extensões Gnome Shell'), () => {
+            Util.trySpawnCommandLine('xdg-open https://gjs.guide/extensions');
+        });
+
+        return item;
     }
 });
