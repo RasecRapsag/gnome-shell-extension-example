@@ -11,6 +11,8 @@ const Mainloop = imports.mainloop;
 const Me = ExtensionUtils.getCurrentExtension();
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
+// Importando Libs
+const S = Me.imports.setting;
 // função responsável pela tradução das strings
 const _ = ExtensionUtils.gettext;
 
@@ -20,8 +22,8 @@ class Indicator extends PanelMenu.Button {
         super._init(0.0, _('Meu Belo Indicador'));
 
         this._timeout = null;
-        this._animate_icon = this._settings('icon-ani-start', 'b');
-        this._animate_refresh = this._settings('icon-ani-refresh', 'i');
+        this._animate_icon = S.settings('icon-ani-start', 'b');
+        this._animate_refresh = S.settings('icon-ani-refresh', 'i');
 
         // Ícone inicial
         this._icon = new St.Icon({
@@ -215,33 +217,6 @@ class Indicator extends PanelMenu.Button {
         ];
         let num = Math.floor(Math.random() * emoticons.length);
         return emoticons[num];
-    }
-
-    _settings(key, type) {
-        this.settings = this._getSettings();
-        if (type == 'i') return this.settings.get_int(key);
-        if (type == 'd') return this.settings.get_double(key);
-        if (type == 'b') return this.settings.get_boolean(key);
-        if (type == 's') return this.settings.get_string(key);
-        if (type == 'as') return this.settings.get_strv(key);
-        if (type == 'e') return this.settings.get_enum(key);
-    }
-
-    _getSettings() {
-        let GioSSS = Gio.SettingsSchemaSource;
-        let schemaSource = GioSSS.new_from_directory(
-            Me.dir.get_child('schemas').get_path(),
-            GioSSS.get_default(),
-            false
-        );
-        let schemaObj = schemaSource.lookup(
-            'org.gnome.shell.extensions.gnome-shell-extension',
-            true
-        );
-        if (!schemaObj) {
-            throw new Error(_('Não foi possível encontrar schemas'));
-        }
-        return new Gio.Settings({ settings_schema: schemaObj });
     }
 
     disable() {

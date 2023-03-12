@@ -23,7 +23,7 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
 const Me = ExtensionUtils.getCurrentExtension();
 // Importando a biblioteca indicator
-const Tray = Me.imports.indicator; 
+const Tray = Me.imports.indicator;
 
 class Extension {
     constructor(uuid) {
