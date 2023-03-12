@@ -26,6 +26,11 @@ class Indicator extends PanelMenu.Button {
         // Adicionando ícone ao painel
         this.add_child(this._icon);
 
+        // Gerar log ao clicar no botão (ícone)
+        this.connect("button-press-event", () => {
+            log(_('Botão Clicado...'));
+        });
+
         // Criando um item de menu
         let item1 = new PopupMenu.PopupMenuItem(_('Exibir Notificação'));
 
