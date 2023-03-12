@@ -92,29 +92,7 @@ class Indicator extends PanelMenu.Button {
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
         // Item de menu do tipo Switch (bool)
-        let item5 = new PopupMenu.PopupSwitchMenuItem(
-            _('Iniciar Animação'),
-            this._animate_icon,
-            {}
-        );
-
-        // Mudando o status (ambos são equivalentes)
-        //item5.setToggleState(!item5.state)
-        //item5.toggle();
-
-        if (item5.state) this._animateIcon();
-
-        // Verificar o switch e altera o texto
-        item5.connect('toggled', (item, state) => {
-            item.label.text = state ? 'Parar Animação' : 'Iniciar Animação';
-            if (item5.state) {
-                this._animateIcon();
-            } else {
-                this.disable();
-            }
-
-        });
-        this.menu.addMenuItem(item5);
+        this._menuSwitch();
     }
 
     _subMenu() {
@@ -184,6 +162,32 @@ class Indicator extends PanelMenu.Button {
         item.menu.addMenuItem(sub6);
 
         return item;
+    }
+
+    _menuSwitch() {
+        let item = new PopupMenu.PopupSwitchMenuItem(
+            _('Iniciar Animação'),
+            this._animate_icon,
+            {}
+        );
+
+        // Mudando o status (ambos são equivalentes)
+        //item.setToggleState(!item5.state)
+        //item.toggle();
+
+        if (item.state) this._animateIcon();
+
+        // Verificar o switch e altera o texto
+        item.connect('toggled', (item, state) => {
+            item.label.text = state ? 'Parar Animação' : 'Iniciar Animação';
+            if (item.state) {
+                this._animateIcon();
+            } else {
+                this.disable();
+            }
+
+        });
+        this.menu.addMenuItem(item);
     }
 
     _animateIcon() {
