@@ -38,6 +38,7 @@ class Extension {
     }
 
     disable() {
+        this._indicator.disable();
         this._indicator.destroy();
         this._indicator = null;
     }

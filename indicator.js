@@ -7,6 +7,7 @@ const { GObject, St } = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
 const Util = imports.misc.util;
+const Mainloop = imports.mainloop;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 // função responsável pela tradução das strings
@@ -16,6 +17,8 @@ var Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
     _init() {
         super._init(0.0, _('Meu Belo Indicador'));
+
+        this._timeout = null;
 
         // Ícone inicial
         this._icon = new St.Icon({
@@ -82,6 +85,25 @@ class Indicator extends PanelMenu.Button {
 
         // Adicionando menu com imagens
         this.menu.addMenuItem(this._subMenuImagens());
+
+        // Item de menu do tipo Switch (bool)
+        let item5 = new PopupMenu.PopupSwitchMenuItem(_('Iniciar Animação'), false, {});
+
+        // Mudando o status (ambos são equivalentes)
+        //item5.setToggleState(!item5.state)
+        //item5.toggle();
+
+        // Verificar o switch e altera o texto
+        item5.connect('toggled', (item, state) => {
+            item.label.text = state ? 'Parar Animação' : 'Iniciar Animação';
+            if (item5.state) {
+                this._animateIcon();
+            } else {
+                this.disable();
+            }
+
+        });
+        this.menu.addMenuItem(item5);
     }
 
     _subMenu() {
@@ -152,4 +174,38 @@ class Indicator extends PanelMenu.Button {
 
         return item;
     }
+
+    _animateIcon() {
+        let refreshTime = 5;
+        if (this._timeout) this.disable();
+        this._timeout = Mainloop.timeout_add_seconds(refreshTime, () => {
+            this._animateIcon();
+            return true;
+        });
+
+        // Faz atualização do ícone
+        this._icon.set_icon_name(this._getIcon());
+    }
+
+    _getIcon() {
+        const emoticons = [
+            'face-angry-symbolic', 'face-laugh-symbolic', 'face-confused-symbolic',
+            'face-cool-symbolic', 'face-crying-symbolic', 'face-embarrassed-symbolic',
+            'face-glasses-symbolic', 'face-kiss-symbolic', 'face-plain-symbolic',
+            'face-raspberry-symbolic', 'face-shutmouth-symbolic', 'face-sick-symbolic',
+            'face-smile-big-symbolic', 'face-smirk-symbolic', 'face-surprise-symbolic',
+            'face-tired-symbolic', 'face-uncertain-symbolic', 'face-worried-symbolic',
+            'face-yawn-symbolic', 'face-angel-symbolic', 'face-devilish-symbolic',
+            'face-monkey-symbolic', 'face-sad-symbolic', 'face-smile-symbolic',
+            'emote-lovesymbolic'
+        ];
+        let num = Math.floor(Math.random() * emoticons.length);
+        return emoticons[num];
+    }
+
+    disable() {
+        Mainloop.source_remove(this._timeout);
+        this._timeout = null;
+    }
+
 });
