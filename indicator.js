@@ -3,11 +3,12 @@
  */
 'use strict'
 
-const { GObject, St } = imports.gi;
+const { GObject, St, Gio } = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
 const Util = imports.misc.util;
 const Mainloop = imports.mainloop;
+const Me = ExtensionUtils.getCurrentExtension();
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 // função responsável pela tradução das strings
@@ -19,6 +20,8 @@ class Indicator extends PanelMenu.Button {
         super._init(0.0, _('Meu Belo Indicador'));
 
         this._timeout = null;
+        this._animate_icon = this._settings('icon-ani-start', 'b');
+        this._animate_refresh = this._settings('icon-ani-refresh', 'i');
 
         // Ícone inicial
         this._icon = new St.Icon({
@@ -86,12 +89,20 @@ class Indicator extends PanelMenu.Button {
         // Adicionando menu com imagens
         this.menu.addMenuItem(this._subMenuImagens());
 
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
         // Item de menu do tipo Switch (bool)
-        let item5 = new PopupMenu.PopupSwitchMenuItem(_('Iniciar Animação'), false, {});
+        let item5 = new PopupMenu.PopupSwitchMenuItem(
+            _('Iniciar Animação'),
+            this._animate_icon,
+            {}
+        );
 
         // Mudando o status (ambos são equivalentes)
         //item5.setToggleState(!item5.state)
         //item5.toggle();
+
+        if (item5.state) this._animateIcon();
 
         // Verificar o switch e altera o texto
         item5.connect('toggled', (item, state) => {
@@ -176,9 +187,8 @@ class Indicator extends PanelMenu.Button {
     }
 
     _animateIcon() {
-        let refreshTime = 5;
         if (this._timeout) this.disable();
-        this._timeout = Mainloop.timeout_add_seconds(refreshTime, () => {
+        this._timeout = Mainloop.timeout_add_seconds(this._animate_refresh, () => {
             this._animateIcon();
             return true;
         });
@@ -197,15 +207,41 @@ class Indicator extends PanelMenu.Button {
             'face-tired-symbolic', 'face-uncertain-symbolic', 'face-worried-symbolic',
             'face-yawn-symbolic', 'face-angel-symbolic', 'face-devilish-symbolic',
             'face-monkey-symbolic', 'face-sad-symbolic', 'face-smile-symbolic',
-            'emote-lovesymbolic'
+            'emote-love-symbolic'
         ];
         let num = Math.floor(Math.random() * emoticons.length);
         return emoticons[num];
+    }
+
+    _settings(key, type) {
+        this.settings = this._getSettings();
+        if (type == 'i') return this.settings.get_int(key);
+        if (type == 'd') return this.settings.get_double(key);
+        if (type == 'b') return this.settings.get_boolean(key);
+        if (type == 's') return this.settings.get_string(key);
+        if (type == 'as') return this.settings.get_strv(key);
+        if (type == 'e') return this.settings.get_enum(key);
+    }
+
+    _getSettings() {
+        let GioSSS = Gio.SettingsSchemaSource;
+        let schemaSource = GioSSS.new_from_directory(
+            Me.dir.get_child('schemas').get_path(),
+            GioSSS.get_default(),
+            false
+        );
+        let schemaObj = schemaSource.lookup(
+            'org.gnome.shell.extensions.gnome-shell-extension',
+            true
+        );
+        if (!schemaObj) {
+            throw new Error(_('Não foi possível encontrar schemas'));
+        }
+        return new Gio.Settings({ settings_schema: schemaObj });
     }
 
     disable() {
         Mainloop.source_remove(this._timeout);
         this._timeout = null;
     }
-
 });

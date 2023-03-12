@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+
+  <schema id="org.gnome.shell.extensions.gnome-shell-extension"
+    path="/org/gnome/shell/extensions/gnome-shell-extension/">
+
+    <key type="s" name="icon-color">
+      <default>"red"</default>
+      <summary>summary</summary>
+      <description>description</description>
+    </key>
+
+    <key type="i" name="icon-ani-refresh">
+      <default>2</default>
+      <summary>summary</summary>
+      <description>description</description>
+    </key>
+
+    <key type="b" name="icon-ani-start">
+      <default>true</default>
+      <summary>summary</summary>
+      <description>description</description>
+    </key>
+
+  </schema>
+
+</schemalist>
