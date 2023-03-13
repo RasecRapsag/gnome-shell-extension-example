@@ -44,3 +44,35 @@ dbus-run-session -- gnome-shell --nested --wayland
 echo "Habilitando a extensão"
 gnome-extensions enable example@example.com
 ```
+
+## Fazendo debug da extensão
+
+### Debug via terminal
+
+```zsh
+echo "Debug extension.js"
+journalctl -f -o cat /usr/bin/gnome-shell
+
+echo "Debug pref"
+journalctl -f -o cat /usr/bin/gnome-shell-extension-prefs
+```
+
+### Debug no código JavaScript
+
+```javasript
+// Logar mensagem
+log('Mensagem');
+
+// Logar mensagem com rastreamento de pilha (logError)
+try {
+    throw new Error('Mensagem');
+} catch (e) {
+    logError(e, 'ExtensionErrorType');
+}
+
+// Exibir mensagem na saída padrão: stdout
+print('Mensagem')
+
+// Exibir mensagem na saída de erro: stderr
+printerr('Mensagem')
+```
