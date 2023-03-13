@@ -76,3 +76,31 @@ print('Mensagem')
 // Exibir mensagem na saída de erro: stderr
 printerr('Mensagem')
 ```
+
+## Schema
+
+GSettings é onde armazenamos informações das aplicações que estamos criando, como se fosse um banco de dados.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    
+  <schema id="org.gnome.shell.extensions.example"
+    path="/org/gnome/shell/extensions/example/">
+    
+    <key type="i" name="my-integer">
+      <default>100</default>
+      <summary>summary</summary>
+      <description>description</description>
+    </key>
+    
+  </schema>
+  
+</schemalist>
+```
+Para funcionar o schema, será necessário compilá-lo:
+
+```zsh
+echo "Compilando o arquivo de schemas"
+glib-compile-schemas schemas/
+```
