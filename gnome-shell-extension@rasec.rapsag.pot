@@ -1,0 +1,105 @@
+# English translations for gnome-shell-extension package.
+# Copyright (C) 2023 gnome-shell-extension COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-shell-extension package.
+# Cesar A. Gaspar <rasec.rapsag@gmail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-shell-extension\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-14 20:40-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator:  <rasec.rapsag@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: indicator.js:23
+msgid "Meu Belo Indicador"
+msgstr "My Shiny Indicator"
+
+#: indicator.js:40
+msgid "Botão Clicado..."
+msgstr "Button Clicked..."
+
+#: indicator.js:44
+msgid "Exibir Notificação"
+msgstr "Show Notification"
+
+#: indicator.js:52
+msgid "Olá Mundo! Tudo bem?"
+msgstr "Hello World! Whatʼs up?"
+
+#: indicator.js:58
+msgid "Alterar estilo do ícone"
+msgstr "Change icon style"
+
+#: indicator.js:73
+msgid "Item Desabilitado"
+msgstr "Item Disabled"
+
+#: indicator.js:77 indicator.js:86
+msgid "Alterar o texto"
+msgstr "Change Label"
+
+#: indicator.js:81
+msgid "Texto alterado"
+msgstr "Changed Label"
+
+#: indicator.js:112
+msgid "Documentação"
+msgstr "Documentation"
+
+#: indicator.js:114
+msgid "Github da Extensão"
+msgstr "Extension's Github"
+
+#: indicator.js:118
+msgid "Documentação Gnome JS"
+msgstr "GJS Documentation"
+
+#: indicator.js:121
+msgid "Extensões Gnome Shell"
+msgstr "GNOME Shell Extensions"
+
+#: indicator.js:130
+msgid "Emoticons"
+msgstr "Emoticons"
+
+#: indicator.js:134
+msgid "Macado"
+msgstr "Monkey"
+
+#: indicator.js:141
+msgid "Diabo"
+msgstr "Devil"
+
+#: indicator.js:148
+msgid "Anjo"
+msgstr "Angel"
+
+#: indicator.js:155
+msgid "Sorriso"
+msgstr "Smile"
+
+#: indicator.js:162
+msgid "Triste"
+msgstr "Sad"
+
+#: indicator.js:169
+msgid "Coração"
+msgstr "Love"
+
+#: indicator.js:181 indicator.js:197
+msgid "Iniciar Animação"
+msgstr "Start Animation"
+
+#: indicator.js:191 indicator.js:197
+msgid "Parar Animação"
+msgstr "Stop Animation"
+
+#: setting.js:32
+msgid "Não foi possível encontrar schemas"
+msgstr "It was not possible to find Schemas"

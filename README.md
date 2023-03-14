@@ -104,3 +104,29 @@ Para funcionar o schema, será necessário compilá-lo:
 echo "Compilando o arquivo de schemas"
 glib-compile-schemas schemas/
 ```
+
+## Traduções (Locales)
+
+Criamos uma pasta locale na raiz do projeto, onde ficaram os diretórios e arquivos de traduções. Geramos 3 tipos de arquivos para a tradução:
+
+- **locale.pot**: Arquivo gerado extraindo as strings do código da extensão
+- **locale.po**: Arquivo gerado após termos adicionado as traduções
+- **locale.mo**: Arquivo binário que será distribuido no pacote
+
+Após editarmos o arquivo.pot geramos o arquivo.po. O arquivo.po já traduz o texto de acordo com a localização do Gnome utilizado, mas o ideal é adicionar ao pacote somente o compilado arquivo.mo.
+
+```zsh
+echo "Extraindo as strings possíveis de serem traduzidas"
+xgettext --from-code=UTF-8 --no-wrap --output=gnome-shell-extension@rasec.rapsag.pot *.js
+
+echo "Atualizando arquivo com as strings"
+xgettext -j --from-code=UTF-8 --no-wrap --output=gnome-shell-extension@rasec.rapsag.pot *.js
+
+echo "Criando um arquivo de tradução (en_US)"
+mkdir -pv locale
+msginit --locale en_US --input gnome-shell-extension@rasec.rapsag.pot --output locale/en_US.po
+
+echo "Após editar as string traduzidas, geramos o arquivo (mo)"
+mkdir -pv locale/en_US/LC_MESSAGES
+msgfmt locale/en_US.po --output-file=locale/en_US/LC_MESSAGES/gnome-shell-extension@rasec.rapsag.mo
+```
