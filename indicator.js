@@ -81,6 +81,14 @@ class Indicator extends PanelMenu.Button {
             item4.label.text = _('Alterar o texto');
         });
 
+        // Informações do arquivo meta.json
+        let extensionName = Me.metadata.name;
+        let extensionUUID = Me.metadata.uuid;
+
+        item4.connect('activate', () => {
+            log(extensionName, extensionUUID);
+        });
+
         this.menu.addMenuItem(item4);
 
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
@@ -95,6 +103,11 @@ class Indicator extends PanelMenu.Button {
 
         // Item de menu do tipo Switch (bool)
         this._menuSwitch();
+
+        /* 
+            Diretório e caminho de arquivos
+        */
+        this._paths();
     }
 
     _subMenu() {
@@ -217,6 +230,20 @@ class Indicator extends PanelMenu.Button {
         ];
         let num = Math.floor(Math.random() * emoticons.length);
         return emoticons[num];
+    }
+
+    _paths() {
+        let extensionFolderPath = Me.path;
+        log('Pasta da extensão: ' + extensionFolderPath);
+
+        let folderExists = Me.dir.get_child('schemas').query_exists(null);
+        log('Verifica se a pasta existe: ' + folderExists);
+
+        let folderPath = Me.dir.get_child('schemas').get_path();
+        log('Caminho da pasta selecionada: ' + folderPath);
+
+        let fileExists = Me.dir.get_child('stylesheet.css').query_exists(null);
+        log('Verifica se o arquivo existe: ' + fileExists);
     }
 
     disable() {
