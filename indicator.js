@@ -42,9 +42,13 @@ class Indicator extends PanelMenu.Button {
         // Criando um item de menu
         let item1 = new PopupMenu.PopupMenuItem(_('Exibir Notificação'));
 
+        // Informações do arquivo meta.json
+        let extensionName = Me.metadata.name;
+
         // Associando um evento
         item1.connect('activate', () => {
-            Main.notify(_('Olá Mundo! Tudo bem?'));
+            // Exibe notificação: ('Título', 'Mensagem')
+            Main.notify(extensionName, _('Olá Mundo! Tudo bem?'));
         });
         // Adicionando o item ao menu
         this.menu.addMenuItem(item1);
@@ -79,14 +83,6 @@ class Indicator extends PanelMenu.Button {
         // Perde o focus
         item4.connect('leave-event', () => {
             item4.label.text = _('Alterar o texto');
-        });
-
-        // Informações do arquivo meta.json
-        let extensionName = Me.metadata.name;
-        let extensionUUID = Me.metadata.uuid;
-
-        item4.connect('activate', () => {
-            log(extensionName, extensionUUID);
         });
 
         this.menu.addMenuItem(item4);
