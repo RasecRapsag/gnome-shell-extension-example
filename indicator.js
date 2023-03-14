@@ -187,11 +187,14 @@ class Indicator extends PanelMenu.Button {
         //item.setToggleState(!item5.state)
         //item.toggle();
 
-        if (item.state) this._animateIcon();
+        if (item.state) {
+            item.label.text = _('Parar Animação');
+            this._animateIcon();
+        }
 
         // Verificar o switch e altera o texto
         item.connect('toggled', (item, state) => {
-            item.label.text = state ? 'Parar Animação' : 'Iniciar Animação';
+            item.label.text = state ? _('Parar Animação') : _('Iniciar Animação');
             if (item.state) {
                 this._animateIcon();
             } else {
