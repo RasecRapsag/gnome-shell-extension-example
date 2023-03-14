@@ -13,6 +13,7 @@ const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 // Importando Libs
 const S = Me.imports.setting;
+const D = Me.imports.dates;
 // função responsável pela tradução das strings
 const _ = ExtensionUtils.gettext;
 
@@ -36,7 +37,7 @@ class Indicator extends PanelMenu.Button {
 
         // Gerar log ao clicar no botão (ícone)
         this.connect("button-press-event", () => {
-            log(_('Botão Clicado...'));
+            log(D.getNow('%Y-%m-%d %H:%M:%S') + ' - ' + _('Botão Clicado...'));
         });
 
         // Criando um item de menu
