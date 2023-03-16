@@ -130,3 +130,13 @@ echo "Após editar as string traduzidas, geramos o arquivo (mo)"
 mkdir -pv locale/en_US/LC_MESSAGES
 msgfmt locale/en_US.po --output-file=locale/en_US/LC_MESSAGES/gnome-shell-extension@rasec.rapsag.mo
 ```
+
+## Gerando pacote para distribuição
+
+```zsh
+echo "Gerando pacote simples"
+gnome-extensions pack --podir=locale .
+
+echo "Gerando pacote com mais arquivos"
+gnome-extensions pack --podir=locale --extra-source=indicator.js --extra-source=setting.js --extra-source=dates.js .
+```
