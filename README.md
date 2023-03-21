@@ -53,6 +53,9 @@ gnome-extensions enable example@example.com
 echo "Debug extension.js"
 journalctl -f -o cat /usr/bin/gnome-shell
 
+echo "Debug de um extensão específica"
+journalctl -f -o cat GNOME_SHELL_EXTENSION_UUID=gnome-shell-extension@rasec.rapsag
+
 echo "Debug pref"
 journalctl -f -o cat /usr/bin/gnome-shell-extension-prefs
 ```
