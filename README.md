@@ -143,3 +143,9 @@ gnome-extensions pack --podir=locale .
 echo "Gerando pacote com mais arquivos"
 gnome-extensions pack --podir=locale --extra-source=indicator.js --extra-source=setting.js --extra-source=dates.js .
 ```
+
+## Abrindo tela de Prefs via terminal
+
+```zsh
+gnome-extensions prefs gnome-shell-extension@rasec.rapsag
+```
