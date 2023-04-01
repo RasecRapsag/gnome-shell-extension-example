@@ -1,8 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+  <enum id="org.gnome.shell.extensions.gnome-shell-extension.enum-sample">
+    <value value="0" nick="TOP"/>
+    <value value="1" nick="BOTTOM"/>
+    <value value="2" nick="RIGHT"/>
+    <value value="3" nick="LEFT"/>
+  </enum>
 
   <schema id="org.gnome.shell.extensions.gnome-shell-extension"
     path="/org/gnome/shell/extensions/gnome-shell-extension/">
+
+    <key type="i" name="my-integer">
+      <default>1</default>
+      <summary>Selecionar variável do tipo inteiro</summary>
+      <description>Configurando a variável my-integer (0, 1, 2, 3, 4)</description>
+    </key>
+
+    <key type="d" name="my-double">
+      <default>0.2</default>
+      <summary>Selecionar variável do tipo real</summary>
+      <description>Configurando a variável my-double</description>
+    </key>
+        
+    <key type="b" name="my-boolean">
+      <default>false</default>
+      <summary>Habilitar variável booleana</summary>
+      <description>Configurando a variável my-boolean</description>
+    </key>
+
+    <key type="s" name="my-string">
+      <default>"Enum"</default>
+      <summary>Definindo nome do grupo</summary>
+      <description>Nome do grupo via variável my-string</description>
+    </key>
+
+    <key type="as" name="my-array">
+      <default>['primeiro', 'segundo', 'terceiro', 'quarto']</default>
+      <summary>Trabalhando com Array</summary>
+      <description>Lendo e exibindo valores de my-array</description>
+    </key>
+
+    <key name="my-enum" enum="org.gnome.shell.extensions.gnome-shell-extension.enum-sample">
+      <default>'TOP'</default>
+      <summary>Selecionar variável do tipo enum</summary>
+      <description>Configurando a variável my-enum</description>
+    </key>
 
     <key type="s" name="icon-color">
       <default>"red"</default>
