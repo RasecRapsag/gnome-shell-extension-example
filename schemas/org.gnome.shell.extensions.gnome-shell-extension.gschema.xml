@@ -35,7 +35,7 @@
     </key>
 
     <key type="as" name="my-array">
-      <default>['primeiro', 'segundo', 'terceiro', 'quarto']</default>
+      <default>['Item 1', 'Item 2', 'Item 3']</default>
       <summary>Trabalhando com Array</summary>
       <description>Lendo e exibindo valores de my-array</description>
     </key>

@@ -125,20 +125,23 @@ var PrincipalPage = GObject.registerClass(
             });
 
             /*
-             * Cria um widget do tipo ShortcutSetting (my-array)
+             * Cria um widget do tipo ListBox (my-array)
              */
-            let atalho = new Adw.PreferencesGroup({
-                title: _("Trabalhando com Array"),
-                description: _('Lendo e exibindo valores de my-array')
+            let btnAdicionar = new Gtk.Button({
+                child: new Adw.ButtonContent({
+                    icon_name: 'list-add-symbolic',
+                    label: _('Adicionar')
+                })
             });
 
-            let listBox = new Gtk.ListBox();
+            this.atalho = new Adw.PreferencesGroup({
+                title: _("Trabalhando com Array"),
+                description: _('Lendo e exibindo valores de my-array'),
+                header_suffix: btnAdicionar
+            });
 
-            this._listAtalhos = this._settings.get_strv('my-array');
+            this._refreshAtalhos();
 
-            for (let i = 0; i < this._listAtalhos.length; i++) {
-                listBox.insert(new Gtk.Label({ label: this._listAtalhos[i], xalign: 0 }), i);
-            }
 
             //
             // Conectando os evento aos items
@@ -155,6 +158,7 @@ var PrincipalPage = GObject.registerClass(
             row_enum.connect('notify::selected', (widget) => {
                 this._settings.set_enum('my-enum', widget.selected);
             });
+            btnAdicionar.connect('clicked', this._onAdicionaAtalho.bind(this));
 
             // Adicionando elementos
             group.add(row_boolean);
@@ -165,8 +169,98 @@ var PrincipalPage = GObject.registerClass(
             enumerando.add(row_enum);
             this.add(enumerando);
 
-            atalho.add(listBox);
-            this.add(atalho);
+            this.add(this.atalho);
+        }
+
+        _refreshAtalhos() {
+            const _atalhos = this._settings.get_strv('my-array');
+
+            // Limpa a lista de atalhos
+            this._listAtalhos.length = 0;
+
+            // Atualiza a lista de atalhos
+            _atalhos.forEach(id => {
+                this._listAtalhos.push(id);
+            });
+
+            // Verifica se os atalhos da inteface precisam de atualização
+            if (this._atalhosListUi != this._listAtalhos) {
+
+                // Remove a lista antiga
+                if (this._count) {
+                    for (var i = 0; i < this._count; i++) {
+                        this.atalho.remove(this.atalhos[i].list);
+                    }
+                    this._count = null;
+                }
+
+                if (this._listAtalhos.length > 0) {
+                    this.atalhos = {};
+
+                    for (let i in this._listAtalhos) {
+                        this.atalhos[i] = {};
+
+                        // Criando um elemento do tipo ListBox
+                        this.atalhos[i].list = new Gtk.ListBox();
+
+                        // Criando um elemento do tipo ListBoxRow
+                        this.atalhos[i].row = new Gtk.ListBoxRow();
+                        this.atalhos[i].row.set_tooltip_text(this._listAtalhos[i]);
+
+                        // Criando um elemento do tipo Box
+                        this.atalhos[i].hbox = new Gtk.Box({
+                            orientation: Gtk.Orientation.HORIZONTAL,
+                            spacing: 10
+                        });
+
+                        // Criando um elemento do tipo Button
+                        this.atalhos[i].btnExcluir = new Gtk.Button({
+                            icon_name: 'edit-delete-symbolic',
+                            valign: Gtk.Align.CENTER,
+                            css_classes: ['error'],
+                            hexpand: false,
+                            vexpand: false
+                        });
+
+                        // Criando um elemento do tipo Label
+                        this.atalhos[i].label = new Gtk.Label({
+                            label: this._listAtalhos[i],
+                            xalign: Gtk.BaselinePosition.CENTER
+                        });
+
+                        // Adicionando evento ao Button
+                        this.atalhos[i].btnExcluir.connect('clicked', () => {
+                            this._onRemoveAtalho(this._listAtalhos[i]);
+                        });
+
+                        // Adicionando os elementos
+                        this.atalhos[i].hbox.append(this.atalhos[i].btnExcluir);
+                        this.atalhos[i].hbox.append(this.atalhos[i].label);
+                        this.atalhos[i].row.set_child(this.atalhos[i].hbox);
+                        this.atalhos[i].list.insert(this.atalhos[i].row, i);
+                        this.atalho.add(this.atalhos[i].list);
+                    }
+                    this._count = this._listAtalhos.length;
+                }
+                this._atalhosListUi = [...this._listAtalhos];
+            }
+        }
+
+        _onAdicionaAtalho() {
+            const atalhos = this._settings.get_strv('my-array');
+            this._settings.set_strv('my-array', [
+                ...atalhos,
+                'Item ' + (atalhos.length + 1),
+            ]);
+            this._refreshAtalhos();
+        }
+
+        _onRemoveAtalho(atalhoId) {
+            this._settings.set_strv('my-array',
+            this._settings.get_strv('my-array').filter(id => {
+                return id !== atalhoId;
+            }));
+            this._refreshAtalhos();
         }
 });
 
