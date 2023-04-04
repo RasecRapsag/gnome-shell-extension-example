@@ -276,4 +276,7 @@ function fillPreferencesWindow(window) {
 
     const principalPage = new PrincipalPage(settings);
     window.add(principalPage);
+
+    // Habilita a pesquisa de item
+    window.search_enabled = true;
 }
