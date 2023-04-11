@@ -4,6 +4,12 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 // Páginas de Preferências
 const PrincipalPrefs = Me.imports.preferences.principalPage;
+const ExtensionPrefs = Me.imports.preferences.extensionPage;
+
+const SettingsKey = {
+    ANIMATION_START: 'icon-ani-start',
+    ANIMATION_REFRESH: 'icon-ani-refresh',
+};
 
 function init() {
     ExtensionUtils.initTranslations(Me.metadata['gettext-domain']);
@@ -14,8 +20,8 @@ function fillPreferencesWindow(window) {
         'org.gnome.shell.extensions.gnome-shell-extension'
     );
 
-    const principalPage = new PrincipalPrefs.PrincipalPage(settings);
-    window.add(principalPage);
+    window.add(new PrincipalPrefs.PrincipalPage(settings));
+    window.add(new ExtensionPrefs.ExtensionPage(settings, SettingsKey));
 
     // Habilita a pesquisa de item
     window.search_enabled = true;
