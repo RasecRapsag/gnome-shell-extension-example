@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-31 22:56-0300\n"
-"PO-Revision-Date: 2023-03-31 23:04-0300\n"
+"POT-Creation-Date: 2023-04-14 17:22-0300\n"
+"PO-Revision-Date: 2023-04-14 17:29-0300\n"
 "Last-Translator:  <rasec.rapsag@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -105,70 +105,99 @@ msgstr "Stop Animation"
 msgid "Não foi possível encontrar schemas"
 msgstr "It was not possible to find Schemas"
 
-#: prefs.js:13
+#: prefs.js:13 preferences/principalPage.js:14
 msgid "Principal"
 msgstr "General"
 
-#: prefs.js:22
+#: prefs.js:22 preferences/principalPage.js:23
 msgid "Grupo"
 msgstr "Group"
 
-#: prefs.js:23
+#: prefs.js:23 preferences/principalPage.js:24
 msgid "Descrição do Grupo"
 msgstr "Group Description"
 
-#: prefs.js:35
+#: prefs.js:35 preferences/principalPage.js:36
 msgid "Habilitar variável booleana"
 msgstr "Enable boolean variable"
 
-#: prefs.js:36
+#: prefs.js:36 preferences/principalPage.js:37
 msgid "Configurando a variável my-boolean"
 msgstr "Setting my-boolean variable"
 
-#: prefs.js:62
+#: prefs.js:62 preferences/principalPage.js:63
 msgid "Selecionar variável do tipo real"
 msgstr "Select float type variable"
 
-#: prefs.js:63
+#: prefs.js:63 preferences/principalPage.js:64
 msgid "Configurando a variável my-double"
 msgstr "Setting my-double variable"
 
-#: prefs.js:89
+#: prefs.js:89 preferences/principalPage.js:90
 msgid "Selecionar variável do tipo inteiro"
 msgstr "Select integer type variable"
 
-#: prefs.js:93
+#: prefs.js:93 preferences/principalPage.js:94
 msgid "Configurando a variável my-integer (0, 1, 2, 3, 4)"
 msgstr "Setting variable my-integer (0, 1, 2, 3, 4)"
 
-#: prefs.js:105
+#: prefs.js:105 preferences/principalPage.js:106
 msgid "Topo"
 msgstr "Top"
 
-#: prefs.js:106
+#: prefs.js:106 preferences/principalPage.js:107
 msgid "Fundo"
 msgstr "Bottom"
 
-#: prefs.js:107
+#: prefs.js:107 preferences/principalPage.js:108
 msgid "Direita"
 msgstr "Right"
 
-#: prefs.js:108
+#: prefs.js:108 preferences/principalPage.js:109
 msgid "Esquerda"
 msgstr "Left"
 
-#: prefs.js:122 prefs.js:121
+#: prefs.js:122 prefs.js:121 preferences/principalPage.js:122
 msgid "Selecionar variável do tipo enum"
 msgstr "Select enum type variable"
 
-#: prefs.js:123 prefs.js:122
+#: prefs.js:123 prefs.js:122 preferences/principalPage.js:123
 msgid "Configurando a variável my-enum"
 msgstr "Setting my-enum variable"
 
-#: prefs.js:132 prefs.js:131
+#: prefs.js:132 prefs.js:131 preferences/principalPage.js:139
 msgid "Trabalhando com Array"
 msgstr "Working with Array"
 
-#: prefs.js:133 prefs.js:132
+#: prefs.js:133 prefs.js:132 preferences/principalPage.js:140
 msgid "Lendo e exibindo valores de my-array"
 msgstr "Reading and displaying values from my-array"
+
+#: preferences/extensionPage.js:14
+msgid "Extensão"
+msgstr "Extension"
+
+#: preferences/extensionPage.js:24
+msgid "Animação"
+msgstr "Animation"
+
+#: preferences/extensionPage.js:34
+msgid "Habilitar animação"
+msgstr "Enable animation"
+
+#: preferences/extensionPage.js:35
+msgid ""
+"Deixar habiliatado a animação do ícone da systray no carregamento da extensão"
+msgstr "Enable icon animation when extension started"
+
+#: preferences/extensionPage.js:58
+msgid "Atualização"
+msgstr "Update"
+
+#: preferences/extensionPage.js:59
+msgid "Tempo de atualização do ícone da systray (em segubndos)"
+msgstr "Systray icon update time (seconds)"
+
+#: preferences/principalPage.js:134
+msgid "Adicionar"
+msgstr "Add"
