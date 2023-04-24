@@ -17,6 +17,11 @@ const D = Me.imports.dates;
 // função responsável pela tradução das strings
 const _ = ExtensionUtils.gettext;
 
+const NotifyMsg = {
+    STRING: 0,
+    FILE: 1,
+};
+
 var Indicator = GObject.registerClass(
 class Indicator extends PanelMenu.Button {
     _init() {
@@ -45,11 +50,26 @@ class Indicator extends PanelMenu.Button {
 
         // Informações do arquivo meta.json
         let extensionName = Me.metadata.name;
+        let msg;
+
+        if (S.settings('notify-msg', 'e') === NotifyMsg.STRING) {
+            msg = _('Olá Mundo! Tudo bem?');
+        } else if (S.settings('notify-msg', 'e') === NotifyMsg.FILE) {
+
+            const file = Gio.File.new_for_path('/tmp/gnome-shell-extension.txt');
+            try {
+                const [, contents, etag] = file.load_contents(null);
+                const decoder = new TextDecoder('utf-8');
+                msg = decoder.decode(contents).trim();
+            } catch (e) {
+                log(e);
+            }
+        }
 
         // Associando um evento
         item1.connect('activate', () => {
             // Exibe notificação: ('Título', 'Mensagem')
-            Main.notify(extensionName, _('Olá Mundo! Tudo bem?'));
+            Main.notify(extensionName, msg);
         });
         // Adicionando o item ao menu
         this.menu.addMenuItem(item1);

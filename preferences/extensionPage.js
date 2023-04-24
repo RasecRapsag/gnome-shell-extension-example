@@ -1,6 +1,6 @@
 'use strict';
 
-const { Adw, Gtk, GObject } = imports.gi;
+const { Adw, Gtk, GObject, GLib, Gio } = imports.gi;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -24,7 +24,7 @@ class ExtensionPage extends Adw.PreferencesPage {
             title: _('Animação')
         });
 
-        // Items do grupo
+        // Items do grupo Animação
         const animationSwitch = new Gtk.Switch({
             active: this._settings.get_boolean(this._settingsKey.ANIMATION_START),
             valign: Gtk.Align.CENTER,
@@ -65,6 +65,49 @@ class ExtensionPage extends Adw.PreferencesPage {
         animationRow.add_row(animationRefreshRow);
         animationGroup.add(animationRow);
         this.add(animationGroup);
+
+        // Grupo Notificação
+        // --------------
+        const notifyGroup = new Adw.PreferencesGroup({
+            title: _('Notificação')
+        });
+        this.add(notifyGroup);
+
+        // Action Group (Radio Button)
+        this._actionGroup = new Gio.SimpleActionGroup();
+        this.insert_action_group('gnome-shell-extension', this._actionGroup);
+
+        this._actionGroup.add_action(
+            this._settings.create_action(this._settingsKey.NOTIFY_MESSAGE)
+        );
+
+        const msgs = [
+            {
+                mode: 'string',
+                title: _('Mensagem fixa no código'),
+                subtitle: _('Mensagem: Olá Mundo! Tudo bem?'),
+            },
+            {
+                mode: 'file',
+                title: _('Mensagem lida a partir do arquivo'),
+                subtitle: _('Primeira linha do arquivo /tmp/gnome-shell-extension.txt'),
+            },
+        ];
+
+        // Item do grupo Notificação (CheckButton)
+        for (const {mode, title, subtitle} of msgs) {
+            const checkMensagem = new Gtk.CheckButton({
+                action_name: 'gnome-shell-extension.' + this._settingsKey.NOTIFY_MESSAGE,
+                action_target: new GLib.Variant('s', mode),
+            });
+            const rowMensagem = new Adw.ActionRow({
+                activatable_widget: checkMensagem,
+                title,
+                subtitle,
+            });
+            rowMensagem.add_prefix(checkMensagem);
+            notifyGroup.add(rowMensagem);
+        }
 
         // Conectando os eventos
         animationSwitch.connect('notify::active', (widget) => {

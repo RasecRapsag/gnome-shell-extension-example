@@ -7,6 +7,11 @@
     <value value="3" nick="LEFT"/>
   </enum>
 
+  <enum id="org.gnome.shell.extensions.gnome-shell-extension.NotifyMsg">
+    <value value="0" nick="string"/>
+    <value value="1" nick="file"/>
+  </enum>
+
   <schema id="org.gnome.shell.extensions.gnome-shell-extension"
     path="/org/gnome/shell/extensions/gnome-shell-extension/">
 
@@ -62,6 +67,15 @@
       <default>true</default>
       <summary>summary</summary>
       <description>description</description>
+    </key>
+
+    <key name="notify-msg" enum="org.gnome.shell.extensions.gnome-shell-extension.NotifyMsg">
+      <default>'string'</default>
+      <summary>Origem da mensagem</summary>
+      <description>
+        Define de onde vem a mensagem do item de menu de notificação.
+        Valores possíveis são “string” e “file”.
+      </description>
     </key>
 
   </schema>

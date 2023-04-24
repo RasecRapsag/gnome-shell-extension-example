@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-14 17:22-0300\n"
+"POT-Creation-Date: 2023-04-24 17:42-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,87 +17,87 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: indicator.js:23
+#: indicator.js:23 indicator.js:28
 msgid "Meu Belo Indicador"
 msgstr "My Shiny Indicator"
 
-#: indicator.js:40
+#: indicator.js:40 indicator.js:45
 msgid "Botão Clicado..."
 msgstr "Button Clicked..."
 
-#: indicator.js:44
+#: indicator.js:44 indicator.js:49
 msgid "Exibir Notificação"
 msgstr "Show Notification"
 
-#: indicator.js:52
+#: indicator.js:52 indicator.js:56
 msgid "Olá Mundo! Tudo bem?"
 msgstr "Hello World! Whatʼs up?"
 
-#: indicator.js:58
+#: indicator.js:58 indicator.js:78
 msgid "Alterar estilo do ícone"
 msgstr "Change icon style"
 
-#: indicator.js:73
+#: indicator.js:73 indicator.js:93
 msgid "Item Desabilitado"
 msgstr "Item Disabled"
 
-#: indicator.js:77 indicator.js:86
+#: indicator.js:77 indicator.js:86 indicator.js:97 indicator.js:106
 msgid "Alterar o texto"
 msgstr "Change Label"
 
-#: indicator.js:81
+#: indicator.js:81 indicator.js:101
 msgid "Texto alterado"
 msgstr "Changed Label"
 
-#: indicator.js:112
+#: indicator.js:112 indicator.js:132
 msgid "Documentação"
 msgstr "Documentation"
 
-#: indicator.js:114
+#: indicator.js:114 indicator.js:134
 msgid "Github da Extensão"
 msgstr "Extension's Github"
 
-#: indicator.js:118
+#: indicator.js:118 indicator.js:138
 msgid "Documentação Gnome JS"
 msgstr "GJS Documentation"
 
-#: indicator.js:121
+#: indicator.js:121 indicator.js:141
 msgid "Extensões Gnome Shell"
 msgstr "GNOME Shell Extensions"
 
-#: indicator.js:130
+#: indicator.js:130 indicator.js:150
 msgid "Emoticons"
 msgstr "Emoticons"
 
-#: indicator.js:134
+#: indicator.js:134 indicator.js:154
 msgid "Macado"
 msgstr "Monkey"
 
-#: indicator.js:141
+#: indicator.js:141 indicator.js:161
 msgid "Diabo"
 msgstr "Devil"
 
-#: indicator.js:148
+#: indicator.js:148 indicator.js:168
 msgid "Anjo"
 msgstr "Angel"
 
-#: indicator.js:155
+#: indicator.js:155 indicator.js:175
 msgid "Sorriso"
 msgstr "Smile"
 
-#: indicator.js:162
+#: indicator.js:162 indicator.js:182
 msgid "Triste"
 msgstr "Sad"
 
-#: indicator.js:169
+#: indicator.js:169 indicator.js:189
 msgid "Coração"
 msgstr "Love"
 
-#: indicator.js:181 indicator.js:197
+#: indicator.js:181 indicator.js:197 indicator.js:201 indicator.js:217
 msgid "Iniciar Animação"
 msgstr "Start Animation"
 
-#: indicator.js:191 indicator.js:197
+#: indicator.js:191 indicator.js:197 indicator.js:211 indicator.js:217
 msgid "Parar Animação"
 msgstr "Stop Animation"
 
@@ -200,3 +200,23 @@ msgstr "Systray icon update time (seconds)"
 #: preferences/principalPage.js:134
 msgid "Adicionar"
 msgstr "Add"
+
+#: preferences/extensionPage.js:72
+msgid "Notificação"
+msgstr "Notification"
+
+#: preferences/extensionPage.js:87
+msgid "Mensagem fixa no código"
+msgstr "Message set in code"
+
+#: preferences/extensionPage.js:88
+msgid "Mensagem: Olá Mundo! Tudo bem?"
+msgstr "Message: Hello World! Whatʼs up?"
+
+#: preferences/extensionPage.js:92
+msgid "Mensagem lida a partir do arquivo"
+msgstr "Message read from file"
+
+#: preferences/extensionPage.js:93
+msgid "Primeira linha do arquivo /tmp/gnome-shell-extension.txt"
+msgstr "First line of /tmp/gnome-shell-extension.txt file"

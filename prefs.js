@@ -9,6 +9,7 @@ const ExtensionPrefs = Me.imports.preferences.extensionPage;
 const SettingsKey = {
     ANIMATION_START: 'icon-ani-start',
     ANIMATION_REFRESH: 'icon-ani-refresh',
+    NOTIFY_MESSAGE: 'notify-msg',
 };
 
 function init() {
