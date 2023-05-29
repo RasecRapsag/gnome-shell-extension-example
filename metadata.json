@@ -3,7 +3,7 @@
   "description": "Exemplo de extensão para Gnome",
   "uuid": "gnome-shell-extension@rasec.rapsag",
   "shell-version": [
-    "43"
+    "43", "44"
   ],
   "gettext-domain": "gnome-shell-extension@rasec.rapsag"
 }
